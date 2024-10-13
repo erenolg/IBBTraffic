@@ -34,7 +34,9 @@ def get_snapshot(timestamp, month="01", year="2023"):
     if timestamp > 168:
         prev_week_density = calculate_density(prev_week)
 
-    snapshot.loc[:,"label"] = ((density > 0.7) & (snapshot["NUMBER_OF_VEHICLES"] > 10)).astype(int)
+    snapshot.loc[:,"label"] = ((density > 0.5) & (snapshot["NUMBER_OF_VEHICLES"] > 10)).astype(int)
+    print(prev_hour_density.mean())
+    print(snapshot.shape)
     snapshot.loc[:,"prev_hour_density"] = prev_hour_density
     if timestamp > 168:
         snapshot.loc[:,"prev_week_density"] = prev_week_density
@@ -72,7 +74,7 @@ def run_experiment(input,
                     target,
                     feats,
                     use_node_embeddings=True, 
-                    embedding_method="node2vec", 
+                    embedding_method="glee", 
                     embedding_size=4):
     models = {"lr":LogisticRegression(max_iter=1000), "knn":KNeighborsClassifier(n_neighbors=3), "rfc":RandomForestClassifier(),\
           "xgb": XGBClassifier(), "catboost": CatBoostClassifier(verbose=0), "lgbm": LGBMClassifier(verbose=-1), "xtree": ExtraTreesClassifier()}
@@ -121,7 +123,7 @@ if __name__ == "__main__":
     parser.add_argument("-t", "--timestamp", type=int, help="Timestamp of snapshot (one timestamp for each hour)", default=200)
     parser.add_argument("--use-node-embeddings", action="store_true", help="Whether to use graph information")
     parser.add_argument("--use-traffic-feats", action="store_true", help="Whether to use traffic features")
-    parser.add_argument("--emb-method", type=str, help="Embedding method to use", default="netmf")
+    parser.add_argument("--emb-method", type=str, help="Embedding method to use", default="glee")
     parser.add_argument("--emb-size", type=int, help="Size of node embeddings", default=4)
 
     args = parser.parse_args()

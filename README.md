@@ -1,7 +1,7 @@
 # IBB Traffic
 
 (repo has net been completed yet, you can treat as demo for now.)
-This work aims to enrich the traffic prediction field with a new big-scale traffic dataset. The proposed dataset contains 4-years of data collected by 2451 distinct road sensors in Istanbul, Turkey. Dataset contains static node (sensor) features as well as traffic flow features. For now, only one month of dataset is available in this repository. You can access all dataset (containing 4-years of data, and not preprocessed) from the original website of IBB ().
+This work aims to enrich the traffic prediction field with a new big-scale traffic dataset. The proposed dataset contains 4-years of data collected by 2451 distinct road sensors in Istanbul, Turkey. Dataset contains static node (sensor) features as well as traffic flow features. For now, only one month of dataset is available in this repository. You can access all dataset (containing 4-years of data, and not preprocessed) from the original website of IBB (https://data.ibb.gov.tr/dataset/hourly-traffic-density-data-set).
 
 For preprint of paper: **IBB Traffic Graph Data: Benchmarking and Road Traffic Prediction Model**
 
