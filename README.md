@@ -23,9 +23,10 @@ python get_embeddings.py --timestamp 1 --method netmf --length 4
 2. Use **'run_experiments.py'** file to conduct experiments of different scenarios. Remember that the node embeddings must be created beforehand as in the step 1.
 ```bash
 python run_experiments.py --timestamp 200 --emb-method netmf --emb-size 4 --use-node-embeddings --use-traffic-feats
+```
 
 
-For citation:
+To cite our work:
 
 ```bibtex
 @misc{olug2024ibbtrafficgraphdata,
