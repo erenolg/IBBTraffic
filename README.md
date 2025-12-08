@@ -8,10 +8,11 @@ You can access the full presentation file [here](https://drive.google.com/file/d
 
 The IBB Road Traffic Graph dataset is a **spatio-temporal** dataset combining a road network (graph) and traffic flow features collected from Istanbul Metropolitan Municipality (IBB) traffic sensors.
 
-* **Data Scope:** 2 years of **pre-processed** traffic data.
+* **Data Scope:** 1 years of **pre-processed** traffic data.
 * **Temporal Resolution:** Calculated in **1-hour intervals** (24 records per sensor per day).
 * **Graph Structure:** The road network is provided as a NetworkX graph (`graph.gexf`).
 
+![Proposed Model](figures/ibb_graph.png)
 
 ### Graph Statistics
 
