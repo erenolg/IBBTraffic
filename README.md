@@ -1,29 +1,40 @@
-# IBB Traffic
+# IBB Traffic Graph Dataset
 
 You can access presentation file [here](https://drive.google.com/file/d/1NZ2Jpnc2JyasNjdPwZ3UyRHgcX94s0XD/view?usp=drive_link).
 
+We share the dataset used in paper **IBB Traffic Graph Data: Benchmarking and Road Traffic Prediction**.
 
-(repo has net been completed yet, you can treat as demo for now.)
-This work aims to enrich the traffic prediction field with a new big-scale traffic dataset. The proposed dataset contains 4-years of data collected by 2451 distinct road sensors in Istanbul, Turkey. Dataset contains static node (sensor) features as well as traffic flow features. For now, only one month of dataset is available in this repository. You can access all dataset (containing 4-years of data, and not preprocessed) from the original website of IBB (https://data.ibb.gov.tr/dataset/hourly-traffic-density-data-set).
+![Model](figures/model.png)
 
-For preprint of paper: **IBB Traffic Graph Data: Benchmarking and Road Traffic Prediction Model**
 
-![Proposed Model](figures/model.png)
+Dataset information:
 
-## Introduction
-For each sensor location (or node), our code aims to predict whether to a congestion will occur in next timestamp given graph structure (via node embeddings), static node features (geographical features for sensors), and previous traffic flow information. After getting node embeddings using different methods (Node2Vec, GLEE, NetMF, GraphWave), we make predictions using different classification models (mostly tree-based). The best result is obtained with combination of GLEE and ExtraTree.
+- IBB Road Traffic Graph dataset is comprised of a road network and traffic flow features. For 2464 nodes, we share 2 years (pre-processed) traffic data, which is calculated in 1 hour intervals for 2464 nodes. That means for each day, for each sensor, there are 24 records.
 
-## Quich Start
-1. Use **'create_embeddings.py'** file to create node embeddings with different methods. 
+- Number of nodes         : 2464
+- Number of edges         : 3695
 
-```bash
-python get_embeddings.py --timestamp 1 --method netmf --length 4
-```
+Node features:
 
-2. Use **'run_experiments.py'** file to conduct experiments of different scenarios. Remember that the node embeddings must be created beforehand as in the step 1.
-```bash
-python run_experiments.py --timestamp 200 --emb-method netmf --emb-size 4 --use-node-embeddings --use-traffic-feats
-```
+- We share the road graph as a NetworkX graph (see graph.gexf). Node attributes are:
+      - lat : latitude
+      - long: longitude
+      - district: the district the sensor is located in
+      - continent: which land the sensor located in (Istanbul has land in both Asia and Europe)
+      - highway: whether the sensor is in highway or urban area
+      - population: population density in that area
+      - label: unique identifier (geohash) for sensor
+
+- In addition to node attributes above, we share 4 traffic features (per hour, per node):
+      - Minimum speed      : minimum car speed
+      - Average speed      : average car speed
+      - Maximum speed      : average car speed
+      - Number of vehicles : number of cars
+
+![Model](figures/ibb_graph.png)
+
+
+For more info see 'intro.ipynb' and figures. We share simple usages in demo.
 
 
 To cite our work:
@@ -39,3 +50,6 @@ To cite our work:
       url={https://arxiv.org/abs/2408.01016}, 
 }
 ```
+
+
+Raw data: (containing 4-years of data, and not preprocessed) from the original website of IBB (https://data.ibb.gov.tr/dataset/hourly-traffic-density-data-set).
